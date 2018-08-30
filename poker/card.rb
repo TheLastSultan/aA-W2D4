@@ -6,8 +6,8 @@ class Card
     @rank = rank
     @suit = suit
   end
-  
-  def to_s 
+
+  def to_s
     char = ""
     case @suit
     when :heart
@@ -18,24 +18,25 @@ class Card
       char = "♦️".colorize(:color => :red, :background => :white)
     when :club
       char = "♣️".colorize(:color => :black, :background => :white)
-    end 
+    end
     rank = @rank
     rank = 'A' if @rank == 14
     rank = 'K' if @rank == 13
     rank = 'Q' if @rank == 12
     rank = 'J' if @rank == 11
     rank = rank.to_s.black
-    "#{char} #{rank}#{char}".colorize(:background => :white) 
+    card_render = "#{char} #{rank}#{char}\n      \n#{char}  #{char}\n"
+    card_render.colorize(:background => :white)
   end
-  
+
   def <=>(card)
     self.rank <=> card.rank
   end
-  
+
   def ==(card)
     self.rank == card.rank
   end
-  
+
 end
 
 if __FILE__ == $PROGRAM_NAME
@@ -46,4 +47,4 @@ if __FILE__ == $PROGRAM_NAME
   puts c3
   puts c1 <=> c3
   puts c3 <=> c2
-end 
+end
